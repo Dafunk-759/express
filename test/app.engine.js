@@ -29,7 +29,7 @@ describe("app", function () {
       app.render("user.html", function (err, str) {
         if (err) return done(err);
         console.log("str:", str);
-        assert.strictEqual(str, "<p>tobi</p>\n<p>18</p>");
+        assert.strictEqual(str, "<p>tobi</p>");
         done();
       });
     });
@@ -50,7 +50,7 @@ describe("app", function () {
 
       app.render("user.html", function (err, str) {
         if (err) return done(err);
-        assert.strictEqual(str, "<p>tobi</p>\n<p>18</p>");
+        assert.strictEqual(str, "<p>tobi</p>");
         done();
       });
     });
@@ -65,7 +65,7 @@ describe("app", function () {
 
       app.render("user", function (err, str) {
         if (err) return done(err);
-        assert.strictEqual(str, "<p>tobi</p>\n<p>18</p>");
+        assert.strictEqual(str, "<p>tobi</p>");
         done();
       });
     });
@@ -80,7 +80,7 @@ describe("app", function () {
 
       app.render("user", function (err, str) {
         if (err) return done(err);
-        assert.strictEqual(str, "<p>tobi</p>\n<p>18</p>");
+        assert.strictEqual(str, "<p>tobi</p>");
         done();
       });
     });

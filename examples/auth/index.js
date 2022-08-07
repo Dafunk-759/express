@@ -32,7 +32,7 @@ app.use(
 app.use(function (req, res, next) {
   var err = req.session.error;
   var msg = req.session.success;
-  console.log(req.session);
+  // console.log(req.session);
   delete req.session.error;
   delete req.session.success;
   res.locals.message = "";
@@ -55,6 +55,8 @@ hash({ password: "foobar" }, function (err, pass, salt, hash) {
   // store the salt & hash in the "db"
   users.tj.salt = salt;
   users.tj.hash = hash;
+  console.log(users);
+  console.log(pass); // 明文
 });
 
 // Authenticate using our plain-object database of doom!
@@ -63,11 +65,14 @@ function authenticate(name, pass, fn) {
   if (!module.parent) console.log("authenticating %s:%s", name, pass);
   var user = users[name];
   // query the db for the given username
+  console.log("user:", user);
   if (!user) return fn(null, null);
   // apply the same algorithm to the POSTed password, applying
   // the hash against the pass / salt, if there is a match we
   // found the user
   hash({ password: pass, salt: user.salt }, function (err, pass, salt, hash) {
+    console.log("pass:", pass);
+    console.log("same user:", hash === user.hash);
     if (err) return fn(err);
     if (hash === user.hash) return fn(null, user);
     fn(null, null);
@@ -104,6 +109,7 @@ app.get("/login", function (req, res) {
 });
 
 app.post("/login", function (req, res, next) {
+  // console.log("urlencoded body:", req.body);
   authenticate(req.body.username, req.body.password, function (err, user) {
     if (err) return next(err);
     if (user) {

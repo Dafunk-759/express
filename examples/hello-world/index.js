@@ -4,14 +4,14 @@ var express = require("../../");
 
 var app = (module.exports = express());
 
-// app.get("/", function (req, res) {
-//   res.send("Hello World");
-// });
-
-app.head("/", (req, res) => {
-  res.writeHead(200, { "x-head-stupid": "fuck" });
-  res.end();
+app.get("/", function (req, res) {
+  res.send("Hello World");
 });
+
+// app.head("/", (req, res) => {
+//   res.writeHead(200, { "x-head-stupid": "fuck" });
+//   res.end();
+// });
 
 /* istanbul ignore next */
 if (!module.parent) {
