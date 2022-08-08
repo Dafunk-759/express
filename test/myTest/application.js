@@ -32,28 +32,28 @@ describe("app.use()", function () {
   //     });
   // });
 
-  it("should restore req.params", function (done) {
-    var app = express();
-    var router = new express.Router({ mergeParams: true });
+  // it("should restore req.params", function (done) {
+  //   var app = express();
+  //   var router = new express.Router({ mergeParams: true });
 
-    router.get("/user:(\\w+)/*", function (req, res, next) {
-      next();
-    });
+  //   router.get("/user:(\\w+)/*", function (req, res, next) {
+  //     next();
+  //   });
 
-    app.use("/user/id:(\\d+)", function (req, res, next) {
-      router(req, res, function (err) {
-        console.log("restore", req.params);
-        var keys = Object.keys(req.params).sort();
-        res.send(
-          keys.map(function (k) {
-            return [k, req.params[k]];
-          })
-        );
-      });
-    });
-
-    request(app)
-      .get("/user/id:42/user:tj/profile")
-      .expect(200, '[["0","42"]]', done);
-  });
+  //   app.use("/user/id:(\\d+)", function (req, res, next) {
+  //     router(req, res, function (err) {
+  //       console.log("restore", req.params);
+  //       var keys = Object.keys(req.params).sort();
+  //       res.send(
+  //         keys.map(function (k) {
+  //           return [k, req.params[k]];
+  //         })
+  //       );
+  //     });
+  //   });
+    
+  //   request(app)
+  //     .get("/user/id:42/user:tj/profile")
+  //     .expect(200, '[["0","42"]]', done);
+  // });
 });

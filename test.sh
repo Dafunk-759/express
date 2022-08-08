@@ -1,1 +1,1 @@
-/home/zjq/express/node_modules/mocha/bin/mocha.js --require test/support/env --reporter spec --bail --check-leaks $1
+/home/zjq/express/node_modules/mocha/bin/mocha.js inspect --require test/support/env --reporter spec --bail --check-leaks $1
